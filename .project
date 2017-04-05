@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>g40_spring_boot_amqp</name>
+	<name>g45_delayedQueue_springboot</name>
 	<comment></comment>
 	<projects>
 	</projects>
