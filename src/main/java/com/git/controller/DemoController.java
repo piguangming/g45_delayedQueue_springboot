@@ -15,20 +15,22 @@ import com.git.service.DemoService;
 @RestController
 public class DemoController {
 	@Autowired
-	private DemoService demoService;
-	
-	@Autowired
     private AmqpTemplate rabbitTemplate;
 	
 	
-	@RequestMapping("/send")
-	public BaseResponse send(HttpServletRequest request,String queue,String context){
-		this.rabbitTemplate.convertAndSend(queue, context+"_"+new Date().getTime());
+	@RequestMapping("/send10")
+	public BaseResponse send10(HttpServletRequest request){
+		this.rabbitTemplate.convertAndSend("10S_Delay", "订单_"+new Date().getTime());
 		return BaseResponse.SUCCESSFUL();
 	}
-	@RequestMapping("/sendToExchange")
-	public BaseResponse send(HttpServletRequest request,String exchange,String routeKey,String context){
-		this.rabbitTemplate.convertAndSend(exchange, routeKey, context);
+	@RequestMapping("/send20")
+	public BaseResponse send20(HttpServletRequest request){
+		this.rabbitTemplate.convertAndSend("20S_Delay", "短信_"+new Date().getTime());
+		return BaseResponse.SUCCESSFUL();
+	}
+	@RequestMapping("/send30")
+	public BaseResponse send30(HttpServletRequest request){
+		this.rabbitTemplate.convertAndSend("30S_Delay", "推送_"+new Date().getTime());
 		return BaseResponse.SUCCESSFUL();
 	}
 }
